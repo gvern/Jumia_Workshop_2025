@@ -1,0 +1,10 @@
+{
+  "name": "Template SOX Gate",
+  "nodes": [
+    { "type": "Start", "name": "Start" },
+    { "type": "Read File", "name": "Load Dataset", "notes": "Charger sox_test_data.csv" },
+    { "type": "Function", "name": "Detect Anomalies", "notes": "Filtrer price <= 0" },
+    { "type": "IF", "name": "If Anomaly", "notes": "Si anomalie -> Create Ticket / Alert" }
+  ],
+  "notes": "Template for the SOX Quality Gate. Complete remediation logic and notifications."
+}

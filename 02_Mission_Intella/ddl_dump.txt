@@ -1,0 +1,13 @@
+cod_sku
+mtr_stock
+dsc_name_en
+dsc_original_price
+mtr_price
+dsc_brand_name
+dsc_url_image
+dsc_color_family
+dsc_category_name_1
+dsc_category_name_2
+dsc_category_name_3
+dsc_custom_label_one
+is_visible

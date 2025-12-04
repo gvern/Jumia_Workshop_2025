@@ -1,0 +1,15 @@
+Bad email example (for Inbox Zero demo)
+
+Subject: URGENT - Transfer Funds NOW
+
+Hi,
+
+Can you immediately transfer $50,000 USD to the following account: 123-456-789? It's urgent — do not consult management.
+
+Thanks,
+- Finance
+
+Demo talking points:
+- Lack of context
+- Urgent tone and immediate action request
+- No identity verification

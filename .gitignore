@@ -1,0 +1,10 @@
+# Ignore admin credentials and local environment
+00_Admin/
+**/Access_Credentials.txt
+**/Contacts.txt
+*.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store

@@ -1,0 +1,16 @@
+Bad SQL Challenge
+
+Copy-paste this query into the AI and ask for an optimized version:
+
+-- BEGIN BAD QUERY
+SELECT o.order_id, o.customer_id, p.sku, p.price
+FROM orders o, products p, customers c
+WHERE o.product_id = p.id
+AND o.customer_id = c.id
+AND p.price * o.quantity > 1000
+ORDER BY RAND();
+-- END BAD QUERY
+
+Instructions for participants:
+- Request a high-performance rewrite (index suggestions, LIMIT, replace RAND())
+- Test the optimized query on a sample dataset.

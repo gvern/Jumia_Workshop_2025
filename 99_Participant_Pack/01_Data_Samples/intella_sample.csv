@@ -1,0 +1,9 @@
+cod_sku,mtr_stock,dsc_name_en,dsc_product_url,dsc_url_image,dsc_original_price,mtr_price,mtr_price_discount,mtr_rating_count,mtr_rating,dsc_brand_name,dsc_size,dsc_color_family,dsc_category_name_l1,dsc_category_name_l2,dsc_category_name_l3,dsc_custom_label_one,mtr_seller_score,attr_model,attr_warranty_duration
+IPH-15-PRO,50,iPhone 15 Pro 128GB,https://jumia.is/p/1,https://jumia.is/img/1.jpg,1200.00,999.00,17,150,4.8,Apple,128GB,Titanium,Phones & Tablets,Mobile Phones,Smartphones,1,4.5,iPhone 15,1 Year
+SAM-S24-ULT,0,Samsung S24 Ultra,https://jumia.is/p/2,https://jumia.is/img/2.jpg,1400.00,1100.00,21,80,4.7,Samsung,256GB,Black,Phones & Tablets,Mobile Phones,Smartphones,1,4.2,S24 Ultra,2 Years
+TSH-NIKE-BLK,100,Nike T-Shirt Basic,https://jumia.is/p/3,https://jumia.is/img/3.jpg,30.00,25.00,16,10,4.0,Nike,L,Black,Fashion,Men's Fashion,T-Shirts,0,3.8,Basic Tee,N/A
+BAD-DATA-01,10,No Image Product,https://jumia.is/p/4,,50.00,40.00,20,5,3.0,Generic,M,Blue,Fashion,Women's Fashion,Dresses,0,2.0,Dress v1,N/A
+ZRO-PRICE-ERR,5,Error Price Product,https://jumia.is/p/5,https://jumia.is/img/5.jpg,100.00,-10.00,110,0,0.0,Generic,S,Red,Home,Decor,,0,1.0,Vase,N/A
+
+-- Golden dataset aligned with Word doc spec (columns from pg_shrek_product_config)
+P0010,SKU-LEN-01,Lenovo ThinkPad X1,Laptops,1199.00,NULL,2025-11-11T10:10:00Z

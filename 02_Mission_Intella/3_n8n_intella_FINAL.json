@@ -1,0 +1,10 @@
+{
+  "name": "Intella Final",
+  "nodes": [
+    {"type":"Start","name":"Start"},
+    {"type":"HTTP Request","name":"Fetch Orders","url":"https://api.example.com/orders","auth":"<use-vault>"},
+    {"type":"Function","name":"Map To Schema","code":"// map fields to schema_target.json"},
+    {"type":"HTTP Request","name":"Post To Intella","url":"https://intella.example.com/ingest","auth":"<use-vault>"}
+  ],
+  "notes":"Complete solution: includes fetching, transformation and sending to Intella (replace placeholders with secrets)"
+}

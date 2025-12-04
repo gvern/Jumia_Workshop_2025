@@ -1,0 +1,9 @@
+cod_sku,mtr_stock,dsc_name_en,dsc_original_price,mtr_price,dsc_brand_name,dsc_url_image,dsc_color_family,dsc_category_name_1,dsc_category_name_2,dsc_custom_label_one,is_visible
+ANOM-OUT-01,0,OutOfStock Product,100.00,80.00,BrandX,https://dz.jumia.is/12abc/ANOM-OUT-01.jpg,Black,Phones,Mobile Phones,0,1
+ANOM-PRICE-01,10,PriceViolation Product,500.00,550.00,BrandY,https://dz.jumia.is/12abc/ANOM-PRICE-01.jpg,White,Phones,Mobile Phones,0,1
+ANOM-NOIMG-01,5,NoImage Product,200.00,150.00,BrandZ,,Red,Phones,Mobile Phones,0,1
+
+-- Rows intentionally represent the SOX anomalies described in the workshop:
+-- 1) stock = 0 but present in final file
+-- 2) sale price (mtr_price) > original price (dsc_original_price)
+-- 3) missing required image (dsc_url_image empty)

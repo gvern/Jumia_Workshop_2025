@@ -1,0 +1,23 @@
+
+Scenario (updated):
+You have access to an Athena catalog and you see table `pg_shrek_product_config` (product feed) and `pg_bob_product_config_attribute` (attribute table).
+You DO NOT have documentation for how to join them. You only have the raw column names (from `pg_shrek_product_config`) and the Attribute/Requirement table from the Word doc.
+
+Task for participants:
+1) Open `02_Mission_Intella/ddl_dump.txt` and copy the list of column names (these are the raw Jumia fields).
+2) Use the columns and the Attribute/Requirement table from the Word doc to ask an LLM (e.g., Gemini) to:
+   - map Jumia columns to Intella target fields,
+   - produce an Athena-compatible SQL query that joins `pg_shrek_product_config` and `pg_bob_product_config_attribute` and returns one row per product with fields: `sku_id`, `title`, `salePrice`, `brand`, `category`, `image_url`, and any other recommended fields.
+   - explain the join keys and assumptions (list multiple plausible join conditions in comments).
+
+Suggested prompt (paste into the AI):
+"I have the following raw column names from `pg_shrek_product_config` (copy from `02_Mission_Intella/ddl_dump.txt`). I also have an Attribute/Requirement table specifying Intella target fields. Provide:
+1) A mapping table from raw Jumia columns to Intella target fields.
+2) An Athena SQL query (with explicit table aliases) that joins `pg_shrek_product_config` and `pg_bob_product_config_attribute` to return product-level rows with `sku_id`, `title`, `salePrice`, `brand`, `category`, and `image_url`.
+3) Multiple plausible join conditions and the assumptions behind each.
+4) A short Python snippet showing how to construct the `category` field by concatenating category levels with ' > '."
+
+Instructor notes:
+- This exercise simulates 'Blind Discovery': participants must infer joins and mappings from column names alone.
+- Encourage participants to validate the LLM's join suggestions by checking for common keys like `cod_sku`, `product_id`, `attribute_id`, or `seller_id` and by testing output row counts.
+

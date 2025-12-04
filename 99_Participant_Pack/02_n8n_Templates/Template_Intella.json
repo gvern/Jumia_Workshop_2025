@@ -1,0 +1,10 @@
+{
+  "name": "Template Intella",
+  "nodes": [
+    { "type": "Start", "name": "Start" },
+    { "type": "Read File", "name": "Load CSV", "notes": "Charger intella_sample.csv" },
+    { "type": "Function", "name": "Map to Intella Schema", "notes": "Mappez les champs selon schema_target.json" },
+    { "type": "HTTP Request", "name": "Send to Intella", "notes": "Configurer URL et auth" }
+  ],
+  "notes": "Import this template and add your credentials. Do not commit secrets."
+}

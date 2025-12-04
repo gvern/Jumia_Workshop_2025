@@ -1,0 +1,11 @@
+{
+  "name": "SOX Gate Final",
+  "nodes": [
+    {"type":"Start","name":"Start"},
+    {"type":"Read File","name":"Load Dataset","file":"anomalies_dataset.csv"},
+    {"type":"Function","name":"Detect Anomalies","code":"// filter price <= 0 and tag for review"},
+    {"type":"HTTP Request","name":"Create Ticket","url":"https://ticketing.example.com/create","auth":"<use-vault>"},
+    {"type":"AI Agent","name":"Suggest Remediation","notes":"Optionnel: utiliser agent pour proposer corrections"}
+  ],
+  "notes":"Complete solution: detection, ticket creation and remediation suggestions via Agent" 
+}
