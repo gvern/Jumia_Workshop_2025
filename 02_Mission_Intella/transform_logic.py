@@ -83,15 +83,34 @@ except Exception:
 
 
 if __name__ == "__main__":
-	# quick local test
-	sample = [
-		{"json": {"cod_sku": "IPH-15-PRO", "mtr_stock": 50, "dsc_name_en": "iPhone 15 Pro 128GB", "dsc_product_url": "https://jumia.is/p/1", "dsc_url_image": "https://jumia.is/img/1.jpg", "dsc_original_price": 1200.0, "mtr_price": 999.0, "mtr_price_discount": 17, "mtr_rating_count": 150, "mtr_rating": 4.8, "dsc_brand_name": "Apple", "dsc_size": "128GB", "dsc_color_family": "Titanium", "dsc_category_name_l1": "Phones & Tablets", "dsc_category_name_l2": "Mobile Phones", "dsc_category_name_l3": "Smartphones", "dsc_custom_label_one": 1, "mtr_seller_score": 4.5, "attr_model": "iPhone 15", "attr_warranty_duration": "1 Year"}},
-		{"json": {"cod_sku": "SAM-S24-ULT", "mtr_stock": 0, "dsc_name_en": "Samsung S24 Ultra", "dsc_product_url": "https://jumia.is/p/2", "dsc_url_image": "https://jumia.is/img/2.jpg", "dsc_original_price": 1400.0, "mtr_price": 1100.0, "mtr_price_discount": 21, "mtr_rating_count": 80, "mtr_rating": 4.7, "dsc_brand_name": "Samsung", "dsc_size": "256GB", "dsc_color_family": "Black", "dsc_category_name_l1": "Phones & Tablets", "dsc_category_name_l2": "Mobile Phones", "dsc_category_name_l3": "Smartphones", "dsc_custom_label_one": 1, "mtr_seller_score": 4.2, "attr_model": "S24 Ultra", "attr_warranty_duration": "2 Years"}},
-	]
-
 	import json
-	print("Input sample:")
-	print(json.dumps(sample, indent=2))
-	print("\nTransformed output:")
-	print(json.dumps(transform_items(sample), indent=2))
+	import csv
+	import os
+
+	# Load data from the participant pack CSV
+	csv_path = os.path.join(os.path.dirname(__file__), "..", "99_Participant_Pack", "01_Data_Samples", "intella_sample.csv")
+	
+	items = []
+	with open(csv_path, 'r', encoding='utf-8') as f:
+		reader = csv.DictReader(f)
+		for row in reader:
+			# Convert numeric fields
+			for field in ['mtr_stock', 'dsc_original_price', 'mtr_price', 'mtr_price_discount', 'mtr_rating_count', 'mtr_rating', 'mtr_seller_score', 'dsc_custom_label_one']:
+				if field in row and row[field]:
+					try:
+						row[field] = float(row[field]) if '.' in str(row[field]) else int(row[field])
+					except:
+						pass
+			items.append({"json": row})
+	
+	print(f"Loaded {len(items)} products from CSV")
+	print("\n" + "="*50)
+	print("TRANSFORMATION RESULTS")
+	print("="*50 + "\n")
+	
+	transformed = transform_items(items)
+	
+	print(f"✓ Filtered to {len(transformed)} products (excluded stock <= 0)")
+	print("\nClean JSON Output:\n")
+	print(json.dumps(transformed, indent=2, ensure_ascii=False))
 

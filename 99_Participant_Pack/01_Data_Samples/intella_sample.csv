@@ -4,6 +4,42 @@ SAM-S24-ULT,0,Samsung S24 Ultra,https://jumia.is/p/2,https://jumia.is/img/2.jpg,
 TSH-NIKE-BLK,100,Nike T-Shirt Basic,https://jumia.is/p/3,https://jumia.is/img/3.jpg,30.00,25.00,16,10,4.0,Nike,L,Black,Fashion,Men's Fashion,T-Shirts,0,3.8,Basic Tee,N/A
 BAD-DATA-01,10,No Image Product,https://jumia.is/p/4,,50.00,40.00,20,5,3.0,Generic,M,Blue,Fashion,Women's Fashion,Dresses,0,2.0,Dress v1,N/A
 ZRO-PRICE-ERR,5,Error Price Product,https://jumia.is/p/5,https://jumia.is/img/5.jpg,100.00,-10.00,110,0,0.0,Generic,S,Red,Home,Decor,,0,1.0,Vase,N/A
-
--- Golden dataset aligned with Word doc spec (columns from pg_shrek_product_config)
-P0010,SKU-LEN-01,Lenovo ThinkPad X1,Laptops,1199.00,NULL,2025-11-11T10:10:00Z
+LG-OLED-77,25,LG OLED 77 inch 4K TV,https://jumia.is/p/6,https://jumia.is/img/6.jpg,2500.00,2199.00,12,245,4.9,LG,77 inch,Black,Electronics,TVs & Audio,Televisions,1,4.8,OLED77C3,2 Years
+ADIDAS-RUN-42,150,Adidas Running Shoes,https://jumia.is/p/7,https://jumia.is/img/7.jpg,85.00,69.00,19,92,4.5,Adidas,42,White,Fashion,Men's Fashion,Shoes,0,4.3,Ultraboost 22,6 Months
+SONY-PS5-SLIM,30,PlayStation 5 Slim,https://jumia.is/p/8,https://jumia.is/img/8.jpg,550.00,499.00,9,312,4.8,Sony,1TB,White,Gaming,Consoles,PlayStation,1,4.7,PS5 Slim,1 Year
+ZARA-DRESS-M,80,Zara Floral Summer Dress,https://jumia.is/p/9,https://jumia.is/img/9.jpg,60.00,45.00,25,28,4.2,Zara,M,Floral,Fashion,Women's Fashion,Dresses,0,4.0,Summer 2025,N/A
+DYSON-V15,45,Dyson V15 Detect Vacuum,https://jumia.is/p/10,https://jumia.is/img/10.jpg,750.00,649.00,13,187,4.7,Dyson,N/A,Yellow,Home,Appliances,Vacuum Cleaners,0,4.6,V15 Detect,2 Years
+DELL-XPS-13,20,Dell XPS 13 Laptop i7,https://jumia.is/p/11,https://jumia.is/img/11.jpg,1599.00,1399.00,13,156,4.6,Dell,13 inch,Silver,Electronics,Computers,Laptops,0,4.5,XPS 13 9320,1 Year
+HM-JEANS-32,200,H&M Slim Fit Jeans,https://jumia.is/p/12,https://jumia.is/img/12.jpg,45.00,35.00,22,45,4.1,H&M,32,Blue,Fashion,Men's Fashion,Jeans,0,3.9,Slim Fit,N/A
+IKEA-SOFA-3S,15,IKEA Kivik 3-Seat Sofa,https://jumia.is/p/13,https://jumia.is/img/13.jpg,899.00,799.00,11,67,4.4,IKEA,3-Seater,Grey,Home,Furniture,Sofas,0,4.2,Kivik,1 Year
+CANON-EOS-R6,12,Canon EOS R6 Mark II,https://jumia.is/p/14,https://jumia.is/img/14.jpg,2799.00,2599.00,7,89,4.9,Canon,Body Only,Black,Electronics,Cameras,Mirrorless,0,4.8,EOS R6 II,2 Years
+PUMA-HOODIE-L,120,Puma Sport Hoodie,https://jumia.is/p/15,https://jumia.is/img/15.jpg,55.00,42.00,24,34,4.3,Puma,L,Black,Fashion,Men's Fashion,Hoodies,0,4.1,Sport Line,N/A
+XIAOMI-13-PRO,0,Xiaomi 13 Pro 256GB,https://jumia.is/p/16,https://jumia.is/img/16.jpg,999.00,849.00,15,203,4.6,Xiaomi,256GB,Green,Phones & Tablets,Mobile Phones,Smartphones,0,4.4,Mi 13 Pro,1 Year
+NEST-THERMO,35,Google Nest Thermostat,https://jumia.is/p/17,https://jumia.is/img/17.jpg,250.00,199.00,20,78,4.5,Google,N/A,White,Home,Smart Home,Thermostats,0,4.3,Nest 3rd Gen,2 Years
+LEVI-501-34,90,Levi's 501 Original Jeans,https://jumia.is/p/18,https://jumia.is/img/18.jpg,98.00,79.00,19,112,4.6,Levi's,34,Dark Blue,Fashion,Men's Fashion,Jeans,0,4.5,501 Original,N/A
+BOSE-QC45,55,Bose QuietComfort 45,https://jumia.is/p/19,https://jumia.is/img/19.jpg,349.00,299.00,14,267,4.8,Bose,N/A,Black,Electronics,Audio,Headphones,1,4.7,QC45,1 Year
+MANGO-BLAZER-S,70,Mango Linen Blazer,https://jumia.is/p/20,https://jumia.is/img/20.jpg,120.00,89.00,26,19,4.0,Mango,S,Beige,Fashion,Women's Fashion,Blazers,0,3.8,Linen Collection,N/A
+ASUS-RTX4090,8,ASUS RTX 4090 Graphics Card,https://jumia.is/p/21,https://jumia.is/img/21.jpg,1899.00,1799.00,5,142,4.9,ASUS,24GB,Black,Electronics,Computer Components,Graphics Cards,0,4.9,ROG Strix,3 Years
+UNIQLO-POLO-M,180,Uniqlo Dry Pique Polo,https://jumia.is/p/22,https://jumia.is/img/22.jpg,25.00,19.00,24,56,4.2,Uniqlo,M,Navy,Fashion,Men's Fashion,Polo Shirts,0,4.0,Dry Pique,N/A
+PHILIPS-AIR-FRY,40,Philips Airfryer XXL,https://jumia.is/p/23,https://jumia.is/img/23.jpg,299.00,249.00,17,198,4.7,Philips,7.3L,Black,Home,Kitchen Appliances,Air Fryers,0,4.6,XXL HD9650,2 Years
+SAM-TAB-S9,60,Samsung Galaxy Tab S9,https://jumia.is/p/24,https://jumia.is/img/24.jpg,899.00,799.00,11,134,4.6,Samsung,11 inch,Grey,Phones & Tablets,Tablets,Android Tablets,0,4.5,Tab S9,1 Year
+NIKE-AIR-MAX,0,Nike Air Max 270,https://jumia.is/p/25,https://jumia.is/img/25.jpg,160.00,139.00,13,88,4.4,Nike,43,Black/Red,Fashion,Men's Fashion,Shoes,0,4.2,Air Max 270,6 Months
+WEST-ELM-BED,10,West Elm Mid-Century Bed,https://jumia.is/p/26,https://jumia.is/img/26.jpg,1200.00,999.00,17,23,4.5,West Elm,Queen,Walnut,Home,Furniture,Beds,0,4.4,Mid-Century,1 Year
+LOGITECH-MX3,95,Logitech MX Master 3S,https://jumia.is/p/27,https://jumia.is/img/27.jpg,109.00,89.00,18,421,4.8,Logitech,N/A,Graphite,Electronics,Computer Accessories,Mice,0,4.7,MX Master 3S,1 Year
+GAP-CHINOS-36,110,GAP Classic Chinos,https://jumia.is/p/28,https://jumia.is/img/28.jpg,65.00,49.00,25,37,4.1,GAP,36,Khaki,Fashion,Men's Fashion,Pants,0,3.9,Classic Fit,N/A
+XBOX-SERIES-X,22,Xbox Series X 1TB,https://jumia.is/p/29,https://jumia.is/img/29.jpg,549.00,499.00,9,256,4.7,Microsoft,1TB,Black,Gaming,Consoles,Xbox,0,4.6,Series X,1 Year
+BOSCH-DRILL,75,Bosch Cordless Drill 18V,https://jumia.is/p/30,https://jumia.is/img/30.jpg,159.00,129.00,19,145,4.6,Bosch,18V,Blue,Home,Tools,Power Tools,0,4.5,GSR 18V,2 Years
+ZARA-COAT-L,45,Zara Wool Blend Coat,https://jumia.is/p/31,https://jumia.is/img/31.jpg,180.00,139.00,23,41,4.3,Zara,L,Camel,Fashion,Women's Fashion,Coats,0,4.1,Winter 2025,N/A
+APPLE-WATCH-9,0,Apple Watch Series 9 GPS,https://jumia.is/p/32,https://jumia.is/img/32.jpg,449.00,399.00,11,312,4.8,Apple,45mm,Midnight,Electronics,Wearables,Smartwatches,1,4.7,Series 9,1 Year
+TEMPUR-PILLOW,85,Tempur-Pedic Memory Foam Pillow,https://jumia.is/p/33,https://jumia.is/img/33.jpg,120.00,95.00,21,167,4.6,Tempur-Pedic,Standard,White,Home,Bedding,Pillows,0,4.5,Cloud,5 Years
+REEBOK-TANK-S,140,Reebok Training Tank Top,https://jumia.is/p/34,https://jumia.is/img/34.jpg,28.00,22.00,21,29,4.0,Reebok,S,Grey,Fashion,Men's Fashion,Tank Tops,0,3.8,Workout Ready,N/A
+SAMSUNG-970-EVO,65,Samsung 970 EVO Plus SSD 1TB,https://jumia.is/p/35,https://jumia.is/img/35.jpg,149.00,119.00,20,289,4.7,Samsung,1TB,N/A,Electronics,Computer Components,Storage,0,4.6,970 EVO Plus,5 Years
+MANGO-SKIRT-M,95,Mango Pleated Midi Skirt,https://jumia.is/p/36,https://jumia.is/img/36.jpg,55.00,42.00,24,33,4.2,Mango,M,Black,Fashion,Women's Fashion,Skirts,0,4.0,Midi Collection,N/A
+ANOMALY-01,15,Missing Image Blender,https://jumia.is/p/37,,89.00,75.00,16,12,3.5,Generic,1.5L,Red,Home,Kitchen Appliances,Blenders,0,3.2,Basic,1 Year
+RAZER-KEYBOARD,50,Razer BlackWidow V3,https://jumia.is/p/38,https://jumia.is/img/38.jpg,139.00,119.00,14,178,4.6,Razer,Full Size,Black,Gaming,Accessories,Keyboards,0,4.5,BlackWidow V3,2 Years
+CK-UNDERWEAR-L,200,Calvin Klein Underwear Pack,https://jumia.is/p/39,https://jumia.is/img/39.jpg,45.00,35.00,22,87,4.4,Calvin Klein,L,Mixed,Fashion,Men's Fashion,Underwear,0,4.2,3-Pack,N/A
+NESPRESSO-VERTUO,30,Nespresso Vertuo Next,https://jumia.is/p/40,https://jumia.is/img/40.jpg,199.00,169.00,15,234,4.5,Nespresso,N/A,Black,Home,Kitchen Appliances,Coffee Makers,0,4.4,Vertuo Next,2 Years
+ANOMALY-02,8,Negative Price Error,https://jumia.is/p/41,https://jumia.is/img/41.jpg,50.00,-5.00,110,0,0.0,No Brand,N/A,N/A,Electronics,Accessories,Cables,0,1.5,Unknown,N/A
+HM-SWEATER-XL,125,H&M Cotton Sweater,https://jumia.is/p/42,https://jumia.is/img/42.jpg,40.00,32.00,20,52,4.1,H&M,XL,Green,Fashion,Men's Fashion,Sweaters,0,3.9,Cotton Basic,N/A
+LOGITECH-C920,70,Logitech C920 HD Webcam,https://jumia.is/p/43,https://jumia.is/img/43.jpg,99.00,79.00,20,312,4.6,Logitech,1080p,Black,Electronics,Computer Accessories,Webcams,0,4.5,C920 Pro,2 Years
+ANOMALY-03,0,Out of Stock Speaker,https://jumia.is/p/44,https://jumia.is/img/44.jpg,299.00,249.00,17,45,4.3,JBL,N/A,Blue,Electronics,Audio,Speakers,0,4.0,Flip 6,1 Year

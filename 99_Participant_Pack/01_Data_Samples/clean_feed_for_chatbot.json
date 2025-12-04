@@ -1,0 +1,782 @@
+[
+  {
+    "json": {
+      "SKU": "IPH-15-PRO",
+      "simple_sku": "IPH-15-PRO-128GB",
+      "stock": 50,
+      "Title": "iPhone 15 Pro 128GB",
+      "URL": "https://jumia.is/p/1",
+      "imageUrl": "https://jumia.is/img/1.jpg",
+      "originalPrice": 1200.0,
+      "salePrice": 999.0,
+      "discount": 17,
+      "brand": "Apple",
+      "category": "Phones & Tablets > Mobile Phones > Smartphones",
+      "is_express": 1,
+      "rating": 4.8,
+      "rating_count": 150,
+      "model": "iPhone 15",
+      "warranty": "1 Year"
+    }
+  },
+  {
+    "json": {
+      "SKU": "TSH-NIKE-BLK",
+      "simple_sku": "TSH-NIKE-BLK-L",
+      "stock": 100,
+      "Title": "Nike T-Shirt Basic",
+      "URL": "https://jumia.is/p/3",
+      "imageUrl": "https://jumia.is/img/3.jpg",
+      "originalPrice": 30.0,
+      "salePrice": 25.0,
+      "discount": 16,
+      "brand": "Nike",
+      "category": "Fashion > Men's Fashion > T-Shirts",
+      "is_express": 0,
+      "rating": 4.0,
+      "rating_count": 10,
+      "model": "Basic Tee",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "BAD-DATA-01",
+      "simple_sku": "BAD-DATA-01-M",
+      "stock": 10,
+      "Title": "No Image Product",
+      "URL": "https://jumia.is/p/4",
+      "imageUrl": "",
+      "originalPrice": 50.0,
+      "salePrice": 40.0,
+      "discount": 20,
+      "brand": "Generic",
+      "category": "Fashion > Women's Fashion > Dresses",
+      "is_express": 0,
+      "rating": 3.0,
+      "rating_count": 5,
+      "model": "Dress v1",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "ZRO-PRICE-ERR",
+      "simple_sku": "ZRO-PRICE-ERR-S",
+      "stock": 5,
+      "Title": "Error Price Product",
+      "URL": "https://jumia.is/p/5",
+      "imageUrl": "https://jumia.is/img/5.jpg",
+      "originalPrice": 100.0,
+      "salePrice": -10.0,
+      "discount": 110,
+      "brand": "Generic",
+      "category": "Home > Decor",
+      "is_express": 0,
+      "rating": 0.0,
+      "rating_count": 0,
+      "model": "Vase",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "LG-OLED-77",
+      "simple_sku": "LG-OLED-77-77 inch",
+      "stock": 25,
+      "Title": "LG OLED 77 inch 4K TV",
+      "URL": "https://jumia.is/p/6",
+      "imageUrl": "https://jumia.is/img/6.jpg",
+      "originalPrice": 2500.0,
+      "salePrice": 2199.0,
+      "discount": 12,
+      "brand": "LG",
+      "category": "Electronics > TVs & Audio > Televisions",
+      "is_express": 1,
+      "rating": 4.9,
+      "rating_count": 245,
+      "model": "OLED77C3",
+      "warranty": "2 Years"
+    }
+  },
+  {
+    "json": {
+      "SKU": "ADIDAS-RUN-42",
+      "simple_sku": "ADIDAS-RUN-42-42",
+      "stock": 150,
+      "Title": "Adidas Running Shoes",
+      "URL": "https://jumia.is/p/7",
+      "imageUrl": "https://jumia.is/img/7.jpg",
+      "originalPrice": 85.0,
+      "salePrice": 69.0,
+      "discount": 19,
+      "brand": "Adidas",
+      "category": "Fashion > Men's Fashion > Shoes",
+      "is_express": 0,
+      "rating": 4.5,
+      "rating_count": 92,
+      "model": "Ultraboost 22",
+      "warranty": "6 Months"
+    }
+  },
+  {
+    "json": {
+      "SKU": "SONY-PS5-SLIM",
+      "simple_sku": "SONY-PS5-SLIM-1TB",
+      "stock": 30,
+      "Title": "PlayStation 5 Slim",
+      "URL": "https://jumia.is/p/8",
+      "imageUrl": "https://jumia.is/img/8.jpg",
+      "originalPrice": 550.0,
+      "salePrice": 499.0,
+      "discount": 9,
+      "brand": "Sony",
+      "category": "Gaming > Consoles > PlayStation",
+      "is_express": 1,
+      "rating": 4.8,
+      "rating_count": 312,
+      "model": "PS5 Slim",
+      "warranty": "1 Year"
+    }
+  },
+  {
+    "json": {
+      "SKU": "ZARA-DRESS-M",
+      "simple_sku": "ZARA-DRESS-M-M",
+      "stock": 80,
+      "Title": "Zara Floral Summer Dress",
+      "URL": "https://jumia.is/p/9",
+      "imageUrl": "https://jumia.is/img/9.jpg",
+      "originalPrice": 60.0,
+      "salePrice": 45.0,
+      "discount": 25,
+      "brand": "Zara",
+      "category": "Fashion > Women's Fashion > Dresses",
+      "is_express": 0,
+      "rating": 4.2,
+      "rating_count": 28,
+      "model": "Summer 2025",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "DYSON-V15",
+      "simple_sku": "DYSON-V15-N/A",
+      "stock": 45,
+      "Title": "Dyson V15 Detect Vacuum",
+      "URL": "https://jumia.is/p/10",
+      "imageUrl": "https://jumia.is/img/10.jpg",
+      "originalPrice": 750.0,
+      "salePrice": 649.0,
+      "discount": 13,
+      "brand": "Dyson",
+      "category": "Home > Appliances > Vacuum Cleaners",
+      "is_express": 0,
+      "rating": 4.7,
+      "rating_count": 187,
+      "model": "V15 Detect",
+      "warranty": "2 Years"
+    }
+  },
+  {
+    "json": {
+      "SKU": "DELL-XPS-13",
+      "simple_sku": "DELL-XPS-13-13 inch",
+      "stock": 20,
+      "Title": "Dell XPS 13 Laptop i7",
+      "URL": "https://jumia.is/p/11",
+      "imageUrl": "https://jumia.is/img/11.jpg",
+      "originalPrice": 1599.0,
+      "salePrice": 1399.0,
+      "discount": 13,
+      "brand": "Dell",
+      "category": "Electronics > Computers > Laptops",
+      "is_express": 0,
+      "rating": 4.6,
+      "rating_count": 156,
+      "model": "XPS 13 9320",
+      "warranty": "1 Year"
+    }
+  },
+  {
+    "json": {
+      "SKU": "HM-JEANS-32",
+      "simple_sku": "HM-JEANS-32-32",
+      "stock": 200,
+      "Title": "H&M Slim Fit Jeans",
+      "URL": "https://jumia.is/p/12",
+      "imageUrl": "https://jumia.is/img/12.jpg",
+      "originalPrice": 45.0,
+      "salePrice": 35.0,
+      "discount": 22,
+      "brand": "H&M",
+      "category": "Fashion > Men's Fashion > Jeans",
+      "is_express": 0,
+      "rating": 4.1,
+      "rating_count": 45,
+      "model": "Slim Fit",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "IKEA-SOFA-3S",
+      "simple_sku": "IKEA-SOFA-3S-3-Seater",
+      "stock": 15,
+      "Title": "IKEA Kivik 3-Seat Sofa",
+      "URL": "https://jumia.is/p/13",
+      "imageUrl": "https://jumia.is/img/13.jpg",
+      "originalPrice": 899.0,
+      "salePrice": 799.0,
+      "discount": 11,
+      "brand": "IKEA",
+      "category": "Home > Furniture > Sofas",
+      "is_express": 0,
+      "rating": 4.4,
+      "rating_count": 67,
+      "model": "Kivik",
+      "warranty": "1 Year"
+    }
+  },
+  {
+    "json": {
+      "SKU": "CANON-EOS-R6",
+      "simple_sku": "CANON-EOS-R6-Body Only",
+      "stock": 12,
+      "Title": "Canon EOS R6 Mark II",
+      "URL": "https://jumia.is/p/14",
+      "imageUrl": "https://jumia.is/img/14.jpg",
+      "originalPrice": 2799.0,
+      "salePrice": 2599.0,
+      "discount": 7,
+      "brand": "Canon",
+      "category": "Electronics > Cameras > Mirrorless",
+      "is_express": 0,
+      "rating": 4.9,
+      "rating_count": 89,
+      "model": "EOS R6 II",
+      "warranty": "2 Years"
+    }
+  },
+  {
+    "json": {
+      "SKU": "PUMA-HOODIE-L",
+      "simple_sku": "PUMA-HOODIE-L-L",
+      "stock": 120,
+      "Title": "Puma Sport Hoodie",
+      "URL": "https://jumia.is/p/15",
+      "imageUrl": "https://jumia.is/img/15.jpg",
+      "originalPrice": 55.0,
+      "salePrice": 42.0,
+      "discount": 24,
+      "brand": "Puma",
+      "category": "Fashion > Men's Fashion > Hoodies",
+      "is_express": 0,
+      "rating": 4.3,
+      "rating_count": 34,
+      "model": "Sport Line",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "NEST-THERMO",
+      "simple_sku": "NEST-THERMO-N/A",
+      "stock": 35,
+      "Title": "Google Nest Thermostat",
+      "URL": "https://jumia.is/p/17",
+      "imageUrl": "https://jumia.is/img/17.jpg",
+      "originalPrice": 250.0,
+      "salePrice": 199.0,
+      "discount": 20,
+      "brand": "Google",
+      "category": "Home > Smart Home > Thermostats",
+      "is_express": 0,
+      "rating": 4.5,
+      "rating_count": 78,
+      "model": "Nest 3rd Gen",
+      "warranty": "2 Years"
+    }
+  },
+  {
+    "json": {
+      "SKU": "LEVI-501-34",
+      "simple_sku": "LEVI-501-34-34",
+      "stock": 90,
+      "Title": "Levi's 501 Original Jeans",
+      "URL": "https://jumia.is/p/18",
+      "imageUrl": "https://jumia.is/img/18.jpg",
+      "originalPrice": 98.0,
+      "salePrice": 79.0,
+      "discount": 19,
+      "brand": "Levi's",
+      "category": "Fashion > Men's Fashion > Jeans",
+      "is_express": 0,
+      "rating": 4.6,
+      "rating_count": 112,
+      "model": "501 Original",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "BOSE-QC45",
+      "simple_sku": "BOSE-QC45-N/A",
+      "stock": 55,
+      "Title": "Bose QuietComfort 45",
+      "URL": "https://jumia.is/p/19",
+      "imageUrl": "https://jumia.is/img/19.jpg",
+      "originalPrice": 349.0,
+      "salePrice": 299.0,
+      "discount": 14,
+      "brand": "Bose",
+      "category": "Electronics > Audio > Headphones",
+      "is_express": 1,
+      "rating": 4.8,
+      "rating_count": 267,
+      "model": "QC45",
+      "warranty": "1 Year"
+    }
+  },
+  {
+    "json": {
+      "SKU": "MANGO-BLAZER-S",
+      "simple_sku": "MANGO-BLAZER-S-S",
+      "stock": 70,
+      "Title": "Mango Linen Blazer",
+      "URL": "https://jumia.is/p/20",
+      "imageUrl": "https://jumia.is/img/20.jpg",
+      "originalPrice": 120.0,
+      "salePrice": 89.0,
+      "discount": 26,
+      "brand": "Mango",
+      "category": "Fashion > Women's Fashion > Blazers",
+      "is_express": 0,
+      "rating": 4.0,
+      "rating_count": 19,
+      "model": "Linen Collection",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "ASUS-RTX4090",
+      "simple_sku": "ASUS-RTX4090-24GB",
+      "stock": 8,
+      "Title": "ASUS RTX 4090 Graphics Card",
+      "URL": "https://jumia.is/p/21",
+      "imageUrl": "https://jumia.is/img/21.jpg",
+      "originalPrice": 1899.0,
+      "salePrice": 1799.0,
+      "discount": 5,
+      "brand": "ASUS",
+      "category": "Electronics > Computer Components > Graphics Cards",
+      "is_express": 0,
+      "rating": 4.9,
+      "rating_count": 142,
+      "model": "ROG Strix",
+      "warranty": "3 Years"
+    }
+  },
+  {
+    "json": {
+      "SKU": "UNIQLO-POLO-M",
+      "simple_sku": "UNIQLO-POLO-M-M",
+      "stock": 180,
+      "Title": "Uniqlo Dry Pique Polo",
+      "URL": "https://jumia.is/p/22",
+      "imageUrl": "https://jumia.is/img/22.jpg",
+      "originalPrice": 25.0,
+      "salePrice": 19.0,
+      "discount": 24,
+      "brand": "Uniqlo",
+      "category": "Fashion > Men's Fashion > Polo Shirts",
+      "is_express": 0,
+      "rating": 4.2,
+      "rating_count": 56,
+      "model": "Dry Pique",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "PHILIPS-AIR-FRY",
+      "simple_sku": "PHILIPS-AIR-FRY-7.3L",
+      "stock": 40,
+      "Title": "Philips Airfryer XXL",
+      "URL": "https://jumia.is/p/23",
+      "imageUrl": "https://jumia.is/img/23.jpg",
+      "originalPrice": 299.0,
+      "salePrice": 249.0,
+      "discount": 17,
+      "brand": "Philips",
+      "category": "Home > Kitchen Appliances > Air Fryers",
+      "is_express": 0,
+      "rating": 4.7,
+      "rating_count": 198,
+      "model": "XXL HD9650",
+      "warranty": "2 Years"
+    }
+  },
+  {
+    "json": {
+      "SKU": "SAM-TAB-S9",
+      "simple_sku": "SAM-TAB-S9-11 inch",
+      "stock": 60,
+      "Title": "Samsung Galaxy Tab S9",
+      "URL": "https://jumia.is/p/24",
+      "imageUrl": "https://jumia.is/img/24.jpg",
+      "originalPrice": 899.0,
+      "salePrice": 799.0,
+      "discount": 11,
+      "brand": "Samsung",
+      "category": "Phones & Tablets > Tablets > Android Tablets",
+      "is_express": 0,
+      "rating": 4.6,
+      "rating_count": 134,
+      "model": "Tab S9",
+      "warranty": "1 Year"
+    }
+  },
+  {
+    "json": {
+      "SKU": "WEST-ELM-BED",
+      "simple_sku": "WEST-ELM-BED-Queen",
+      "stock": 10,
+      "Title": "West Elm Mid-Century Bed",
+      "URL": "https://jumia.is/p/26",
+      "imageUrl": "https://jumia.is/img/26.jpg",
+      "originalPrice": 1200.0,
+      "salePrice": 999.0,
+      "discount": 17,
+      "brand": "West Elm",
+      "category": "Home > Furniture > Beds",
+      "is_express": 0,
+      "rating": 4.5,
+      "rating_count": 23,
+      "model": "Mid-Century",
+      "warranty": "1 Year"
+    }
+  },
+  {
+    "json": {
+      "SKU": "LOGITECH-MX3",
+      "simple_sku": "LOGITECH-MX3-N/A",
+      "stock": 95,
+      "Title": "Logitech MX Master 3S",
+      "URL": "https://jumia.is/p/27",
+      "imageUrl": "https://jumia.is/img/27.jpg",
+      "originalPrice": 109.0,
+      "salePrice": 89.0,
+      "discount": 18,
+      "brand": "Logitech",
+      "category": "Electronics > Computer Accessories > Mice",
+      "is_express": 0,
+      "rating": 4.8,
+      "rating_count": 421,
+      "model": "MX Master 3S",
+      "warranty": "1 Year"
+    }
+  },
+  {
+    "json": {
+      "SKU": "GAP-CHINOS-36",
+      "simple_sku": "GAP-CHINOS-36-36",
+      "stock": 110,
+      "Title": "GAP Classic Chinos",
+      "URL": "https://jumia.is/p/28",
+      "imageUrl": "https://jumia.is/img/28.jpg",
+      "originalPrice": 65.0,
+      "salePrice": 49.0,
+      "discount": 25,
+      "brand": "GAP",
+      "category": "Fashion > Men's Fashion > Pants",
+      "is_express": 0,
+      "rating": 4.1,
+      "rating_count": 37,
+      "model": "Classic Fit",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "XBOX-SERIES-X",
+      "simple_sku": "XBOX-SERIES-X-1TB",
+      "stock": 22,
+      "Title": "Xbox Series X 1TB",
+      "URL": "https://jumia.is/p/29",
+      "imageUrl": "https://jumia.is/img/29.jpg",
+      "originalPrice": 549.0,
+      "salePrice": 499.0,
+      "discount": 9,
+      "brand": "Microsoft",
+      "category": "Gaming > Consoles > Xbox",
+      "is_express": 0,
+      "rating": 4.7,
+      "rating_count": 256,
+      "model": "Series X",
+      "warranty": "1 Year"
+    }
+  },
+  {
+    "json": {
+      "SKU": "BOSCH-DRILL",
+      "simple_sku": "BOSCH-DRILL-18V",
+      "stock": 75,
+      "Title": "Bosch Cordless Drill 18V",
+      "URL": "https://jumia.is/p/30",
+      "imageUrl": "https://jumia.is/img/30.jpg",
+      "originalPrice": 159.0,
+      "salePrice": 129.0,
+      "discount": 19,
+      "brand": "Bosch",
+      "category": "Home > Tools > Power Tools",
+      "is_express": 0,
+      "rating": 4.6,
+      "rating_count": 145,
+      "model": "GSR 18V",
+      "warranty": "2 Years"
+    }
+  },
+  {
+    "json": {
+      "SKU": "ZARA-COAT-L",
+      "simple_sku": "ZARA-COAT-L-L",
+      "stock": 45,
+      "Title": "Zara Wool Blend Coat",
+      "URL": "https://jumia.is/p/31",
+      "imageUrl": "https://jumia.is/img/31.jpg",
+      "originalPrice": 180.0,
+      "salePrice": 139.0,
+      "discount": 23,
+      "brand": "Zara",
+      "category": "Fashion > Women's Fashion > Coats",
+      "is_express": 0,
+      "rating": 4.3,
+      "rating_count": 41,
+      "model": "Winter 2025",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "TEMPUR-PILLOW",
+      "simple_sku": "TEMPUR-PILLOW-Standard",
+      "stock": 85,
+      "Title": "Tempur-Pedic Memory Foam Pillow",
+      "URL": "https://jumia.is/p/33",
+      "imageUrl": "https://jumia.is/img/33.jpg",
+      "originalPrice": 120.0,
+      "salePrice": 95.0,
+      "discount": 21,
+      "brand": "Tempur-Pedic",
+      "category": "Home > Bedding > Pillows",
+      "is_express": 0,
+      "rating": 4.6,
+      "rating_count": 167,
+      "model": "Cloud",
+      "warranty": "5 Years"
+    }
+  },
+  {
+    "json": {
+      "SKU": "REEBOK-TANK-S",
+      "simple_sku": "REEBOK-TANK-S-S",
+      "stock": 140,
+      "Title": "Reebok Training Tank Top",
+      "URL": "https://jumia.is/p/34",
+      "imageUrl": "https://jumia.is/img/34.jpg",
+      "originalPrice": 28.0,
+      "salePrice": 22.0,
+      "discount": 21,
+      "brand": "Reebok",
+      "category": "Fashion > Men's Fashion > Tank Tops",
+      "is_express": 0,
+      "rating": 4.0,
+      "rating_count": 29,
+      "model": "Workout Ready",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "SAMSUNG-970-EVO",
+      "simple_sku": "SAMSUNG-970-EVO-1TB",
+      "stock": 65,
+      "Title": "Samsung 970 EVO Plus SSD 1TB",
+      "URL": "https://jumia.is/p/35",
+      "imageUrl": "https://jumia.is/img/35.jpg",
+      "originalPrice": 149.0,
+      "salePrice": 119.0,
+      "discount": 20,
+      "brand": "Samsung",
+      "category": "Electronics > Computer Components > Storage",
+      "is_express": 0,
+      "rating": 4.7,
+      "rating_count": 289,
+      "model": "970 EVO Plus",
+      "warranty": "5 Years"
+    }
+  },
+  {
+    "json": {
+      "SKU": "MANGO-SKIRT-M",
+      "simple_sku": "MANGO-SKIRT-M-M",
+      "stock": 95,
+      "Title": "Mango Pleated Midi Skirt",
+      "URL": "https://jumia.is/p/36",
+      "imageUrl": "https://jumia.is/img/36.jpg",
+      "originalPrice": 55.0,
+      "salePrice": 42.0,
+      "discount": 24,
+      "brand": "Mango",
+      "category": "Fashion > Women's Fashion > Skirts",
+      "is_express": 0,
+      "rating": 4.2,
+      "rating_count": 33,
+      "model": "Midi Collection",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "ANOMALY-01",
+      "simple_sku": "ANOMALY-01-1.5L",
+      "stock": 15,
+      "Title": "Missing Image Blender",
+      "URL": "https://jumia.is/p/37",
+      "imageUrl": "",
+      "originalPrice": 89.0,
+      "salePrice": 75.0,
+      "discount": 16,
+      "brand": "Generic",
+      "category": "Home > Kitchen Appliances > Blenders",
+      "is_express": 0,
+      "rating": 3.5,
+      "rating_count": 12,
+      "model": "Basic",
+      "warranty": "1 Year"
+    }
+  },
+  {
+    "json": {
+      "SKU": "RAZER-KEYBOARD",
+      "simple_sku": "RAZER-KEYBOARD-Full Size",
+      "stock": 50,
+      "Title": "Razer BlackWidow V3",
+      "URL": "https://jumia.is/p/38",
+      "imageUrl": "https://jumia.is/img/38.jpg",
+      "originalPrice": 139.0,
+      "salePrice": 119.0,
+      "discount": 14,
+      "brand": "Razer",
+      "category": "Gaming > Accessories > Keyboards",
+      "is_express": 0,
+      "rating": 4.6,
+      "rating_count": 178,
+      "model": "BlackWidow V3",
+      "warranty": "2 Years"
+    }
+  },
+  {
+    "json": {
+      "SKU": "CK-UNDERWEAR-L",
+      "simple_sku": "CK-UNDERWEAR-L-L",
+      "stock": 200,
+      "Title": "Calvin Klein Underwear Pack",
+      "URL": "https://jumia.is/p/39",
+      "imageUrl": "https://jumia.is/img/39.jpg",
+      "originalPrice": 45.0,
+      "salePrice": 35.0,
+      "discount": 22,
+      "brand": "Calvin Klein",
+      "category": "Fashion > Men's Fashion > Underwear",
+      "is_express": 0,
+      "rating": 4.4,
+      "rating_count": 87,
+      "model": "3-Pack",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "NESPRESSO-VERTUO",
+      "simple_sku": "NESPRESSO-VERTUO-N/A",
+      "stock": 30,
+      "Title": "Nespresso Vertuo Next",
+      "URL": "https://jumia.is/p/40",
+      "imageUrl": "https://jumia.is/img/40.jpg",
+      "originalPrice": 199.0,
+      "salePrice": 169.0,
+      "discount": 15,
+      "brand": "Nespresso",
+      "category": "Home > Kitchen Appliances > Coffee Makers",
+      "is_express": 0,
+      "rating": 4.5,
+      "rating_count": 234,
+      "model": "Vertuo Next",
+      "warranty": "2 Years"
+    }
+  },
+  {
+    "json": {
+      "SKU": "ANOMALY-02",
+      "simple_sku": "ANOMALY-02-N/A",
+      "stock": 8,
+      "Title": "Negative Price Error",
+      "URL": "https://jumia.is/p/41",
+      "imageUrl": "https://jumia.is/img/41.jpg",
+      "originalPrice": 50.0,
+      "salePrice": -5.0,
+      "discount": 110,
+      "brand": "No Brand",
+      "category": "Electronics > Accessories > Cables",
+      "is_express": 0,
+      "rating": 0.0,
+      "rating_count": 0,
+      "model": "Unknown",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "HM-SWEATER-XL",
+      "simple_sku": "HM-SWEATER-XL-XL",
+      "stock": 125,
+      "Title": "H&M Cotton Sweater",
+      "URL": "https://jumia.is/p/42",
+      "imageUrl": "https://jumia.is/img/42.jpg",
+      "originalPrice": 40.0,
+      "salePrice": 32.0,
+      "discount": 20,
+      "brand": "H&M",
+      "category": "Fashion > Men's Fashion > Sweaters",
+      "is_express": 0,
+      "rating": 4.1,
+      "rating_count": 52,
+      "model": "Cotton Basic",
+      "warranty": "N/A"
+    }
+  },
+  {
+    "json": {
+      "SKU": "LOGITECH-C920",
+      "simple_sku": "LOGITECH-C920-1080p",
+      "stock": 70,
+      "Title": "Logitech C920 HD Webcam",
+      "URL": "https://jumia.is/p/43",
+      "imageUrl": "https://jumia.is/img/43.jpg",
+      "originalPrice": 99.0,
+      "salePrice": 79.0,
+      "discount": 20,
+      "brand": "Logitech",
+      "category": "Electronics > Computer Accessories > Webcams",
+      "is_express": 0,
+      "rating": 4.6,
+      "rating_count": 312,
+      "model": "C920 Pro",
+      "warranty": "2 Years"
+    }
+  }
+]
