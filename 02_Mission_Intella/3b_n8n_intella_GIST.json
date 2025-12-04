@@ -1,0 +1,133 @@
+{
+  "name": "My workflow 28",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f7597594-e37a-4a74-bdcd-680d8a84c328",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        32,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://gist.githubusercontent.com/gvern/3195d242f6c226621b63a7c15bab480c/raw/137e90a79cd9befc7de00ad87cce4bc2f53011f9/gistfile1.txt",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "8a82e001-c6aa-420a-bbda-a534566617fa",
+      "name": "Download from S3 (Gist)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        256,
+        -128
+      ],
+      "notes": "Simule le téléchargement S3 via Gist"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c00c6a99-b10c-4ed5-97ab-27618baa259d",
+      "name": "Parse CSV",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        480,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "# Transformation basée sur la spec Jumia/Intella\n\ninput_items = _input.all()\noutput_data = []\n\nfor item in input_items:\n    product = item.json\n    \n    # --- 1. QUALITY GATE ---\n    try:\n        stock = float(product.get('mtr_stock', 0))\n    except:\n        stock = 0\n    \n    if stock <= 0:\n        continue # Filtre stock vide\n\n    # --- 2. TRANSFORMATION ---\n    cat_parts = []\n    for i in range(1, 9):\n        val = product.get(f'dsc_category_name_l{i}')\n        if val:\n            cat_parts.append(val)\n    full_category = \" > \".join(cat_parts)\n\n    is_express = 1 if str(product.get('dsc_custom_label_one')) == '1' else 0\n    \n    base_sku = product.get('cod_sku', 'UNKNOWN')\n    size = product.get('dsc_size')\n    simple_sku = f\"{base_sku}-{size}\" if size else base_sku\n\n    # --- 3. MAPPING ---\n    mapped_product = {\n        \"SKU\": base_sku,\n        \"simple_sku\": simple_sku,\n        \"stock\": int(stock),\n        \"Title\": product.get('dsc_name_en') or \"No Title\",\n        \"salePrice\": product.get('mtr_price'),\n        \"category\": full_category,\n        \"is_express\": is_express\n    }\n    \n    output_data.append({\"json\": mapped_product})\n\nreturn output_data"
+      },
+      "id": "56aa83d9-2a3a-44b7-a26c-259fc42eee06",
+      "name": "Python Transform",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        704,
+        -128
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5bff541a-129d-4de4-95d3-c6bd6031e52a",
+      "name": "Mock SFTP Upload",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        912,
+        -128
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Download from S3 (Gist)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download from S3 (Gist)": {
+      "main": [
+        [
+          {
+            "node": "Parse CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse CSV": {
+      "main": [
+        [
+          {
+            "node": "Python Transform",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Python Transform": {
+      "main": [
+        [
+          {
+            "node": "Mock SFTP Upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "dece5bf2-4a8a-49ff-b707-71fa4868d823",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "968483afb1876e34ae96330e235ea7e691d9d2c2379c1202de80fcb0f81bf6b4"
+  },
+  "id": "bV8mO5V2uAZ0F504",
+  "tags": []
+}

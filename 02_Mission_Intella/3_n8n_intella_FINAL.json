@@ -1,10 +1,71 @@
 {
-  "name": "Intella Final",
+  "name": "Intella Final Solution",
   "nodes": [
-    {"type":"Start","name":"Start"},
-    {"type":"HTTP Request","name":"Fetch Orders","url":"https://api.example.com/orders","auth":"<use-vault>"},
-    {"type":"Function","name":"Map To Schema","code":"// map fields to schema_target.json"},
-    {"type":"HTTP Request","name":"Post To Intella","url":"https://intella.example.com/ingest","auth":"<use-vault>"}
+    {
+      "parameters": {},
+      "id": "badc0de-1",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "fileSelector": "/data/intella_sample.csv"
+      },
+      "id": "badc0de-2",
+      "name": "Read CSV (S3 Simulation)",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "notes": "Simulates downloading from S3. In production, replace with AWS S3 Node."
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "badc0de-3",
+      "name": "Parse CSV",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "pythonCode": "# Transformation Logic based on 'Intella Product Feed.docx'\n\n# 1. Get the JSON content\nproduct = _input.item.json\n\n# --- QUALITY GATES ---\n# Rule: Stock > 0 required\ntry:\n    stock = float(product.get('mtr_stock', 0))\nexcept:\n    stock = 0\n\nif stock <= 0:\n    return None # Skip item (Filter)\n\n# --- TRANSFORMATION ---\n\n# 1. Category Hierarchy\ncat_parts = []\nfor i in range(1, 9):\n    val = product.get(f'dsc_category_name_l{i}')\n    if val:\n        cat_parts.append(val)\nfull_category = ' > '.join(cat_parts)\n\n# 2. Jumia Express Logic\nis_express = 1 if str(product.get('dsc_custom_label_one')) == '1' else 0\n\n# 3. Simple SKU\nbase_sku = product.get('cod_sku', 'UNKNOWN')\nsize = product.get('dsc_size')\nsimple_sku = f\"{base_sku}-{size}\" if size else base_sku\n\n# --- MAPPING ---\nreturn {\n    \"json\": {\n        \"SKU\": base_sku,\n        \"simple_sku\": simple_sku,\n        \"stock\": int(stock),\n        \"Title\": product.get('dsc_name_en') or product.get('dsc_name_fr') or \"No Title\",\n        \"URL\": product.get('dsc_product_url'),\n        \"imageUrl\": product.get('dsc_url_image'),\n        \"originalPrice\": product.get('dsc_original_price'),\n        \"salePrice\": product.get('mtr_price'),\n        \"discount\": product.get('mtr_price_discount'),\n        \"brand\": product.get('dsc_brand_name'),\n        \"category\": full_category,\n        \"is_express\": is_express,\n        \"rating\": product.get('mtr_rating'),\n        \"model\": product.get('attr_model')\n    }\n}"
+      },
+      "id": "badc0de-4",
+      "name": "Python Transform",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "badc0de-5",
+      "name": "Mock SFTP Upload",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1120, 300],
+      "notes": "Represents the final upload to Intella"
+    }
   ],
-  "notes":"Complete solution: includes fetching, transformation and sending to Intella (replace placeholders with secrets)"
+  "connections": {
+    "Start": {
+      "main": [[{"node": "Read CSV (S3 Simulation)", "type": "main", "index": 0}]]
+    },
+    "Read CSV (S3 Simulation)": {
+      "main": [[{"node": "Parse CSV", "type": "main", "index": 0}]]
+    },
+    "Parse CSV": {
+      "main": [[{"node": "Python Transform", "type": "main", "index": 0}]]
+    },
+    "Python Transform": {
+      "main": [[{"node": "Mock SFTP Upload", "type": "main", "index": 0}]]
+    }
+  }
 }

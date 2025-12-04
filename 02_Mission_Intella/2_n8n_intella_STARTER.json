@@ -1,9 +1,64 @@
 {
-  "name": "Intella Starter",
+  "name": "Intella Workshop Starter",
   "nodes": [
-    {"type":"Start","name":"Start"},
-    {"type":"HTTP Request","name":"Fetch Orders","notes":"Remplir URL et auth"},
-    {"type":"Function","name":"Map To Schema","notes":"Transformer selon schema_target.json"}
+    {
+      "parameters": {},
+      "id": "start-1",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "fileSelector": "/data/intella_sample.csv"
+      },
+      "id": "read-1",
+      "name": "Read CSV (S3 Simulation)",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "notes": "Step 1: Get the Data"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "parse-1",
+      "name": "Parse CSV",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "pythonCode": "# TODO: Use Windsurf/Copilot to generate this script\n# 1. Filter out stock <= 0\n# 2. Format Category (L1 > L2 > L3)\n# 3. Create 'simple_sku'\n# 4. Return clean JSON matched to Intella Spec"
+      },
+      "id": "code-1",
+      "name": "Python Transform",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {},
+      "id": "upload-1",
+      "name": "SFTP Upload",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1120, 300]
+    }
   ],
-  "notes":"Template workflow: participants must fill credentials and the transformation step"
+  "connections": {
+    "Start": {
+      "main": [[{"node": "Read CSV (S3 Simulation)", "type": "main", "index": 0}]]
+    },
+    "Read CSV (S3 Simulation)": {
+      "main": [[{"node": "Parse CSV", "type": "main", "index": 0}]]
+    },
+    "Parse CSV": {
+      "main": [[{"node": "Python Transform", "type": "main", "index": 0}]]
+    }
+  }
 }
