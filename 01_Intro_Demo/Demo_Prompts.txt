@@ -1,0 +1,10 @@
+=== DEMO 1: MARKETING MAGIC (Midjourney / Dalle-3) ===
+Prompt: "A futuristic orange delivery drone carrying a Jumia package, flying over the Dom Luís I Bridge in Porto at sunset, cinematic lighting, hyper-realistic, 8k."
+
+=== DEMO 2: PRODUCTIVITY (Inbox Zero) ===
+Context: Paste a rude customer email complaining about a late delivery.
+Prompt: "Act as a senior Customer Support Agent at Jumia. Draft a empathetic, professional, and short response to this customer. Offer a 5% discount code as an apology. Tone: Helpful and calm."
+
+=== DEMO 3: THE RISK (Hallucination) ===
+Prompt: "Give me the SQL syntax to use the 'JUMIA_OPTIMIZE()' function in AWS Athena to speed up queries by 50%."
+(Note: This function does not exist. The AI might invent a syntax -> Proof of hallucination).
