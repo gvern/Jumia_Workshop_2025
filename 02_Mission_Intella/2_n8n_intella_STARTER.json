@@ -1,64 +1,462 @@
 {
-  "name": "Intella Workshop Starter",
+  "name": "Starter Workflow",
   "nodes": [
     {
       "parameters": {},
-      "id": "start-1",
+      "id": "2ae8d604-ad1c-47c6-b7d9-b59b5d5724e1",
       "name": "Start",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
-      "position": [240, 300]
+      "position": [
+        -2032,
+        256
+      ]
     },
     {
       "parameters": {
-        "fileSelector": "/data/intella_sample.csv"
+        "bucketName": "workshop-jumia-data",
+        "fileKey": "intella_sample.csv"
       },
-      "id": "read-1",
-      "name": "Read CSV (S3 Simulation)",
-      "type": "n8n-nodes-base.readBinaryFile",
+      "id": "d7a23976-1e2b-4996-9b24-ae0790a95fa2",
+      "name": "Download from S3 (Primary)",
+      "type": "n8n-nodes-base.awsS3",
       "typeVersion": 1,
-      "position": [460, 300],
-      "notes": "Step 1: Get the Data"
+      "position": [
+        -1744,
+        224
+      ],
+      "credentials": {
+        "aws": {
+          "id": "VNm9fSYRCUbLI52r",
+          "name": "AWS account"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Primary data source from AWS S3"
+    },
+    {
+      "parameters": {
+        "url": "https://gist.githubusercontent.com/gvern/3195d242f6c226621b63a7c15bab480c/raw/137e90a79cd9befc7de00ad87cce4bc2f53011f9/gistfile1.txt",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "d579f35d-9a9d-4e00-a9ea-8e0b18b0cb73",
+      "name": "Download from Gist (Fallback)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -1216,
+        400
+      ],
+      "notes": "Backup data source - Activated if S3 fails"
     },
     {
       "parameters": {
         "options": {}
       },
-      "id": "parse-1",
+      "id": "076e5857-adb2-4fa3-90b6-068abef673e5",
       "name": "Parse CSV",
       "type": "n8n-nodes-base.spreadsheetFile",
       "typeVersion": 1,
-      "position": [680, 300]
+      "position": [
+        -928,
+        256
+      ]
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "pythonCode": "# TODO: Use Windsurf/Copilot to generate this script\n# 1. Filter out stock <= 0\n# 2. Format Category (L1 > L2 > L3)\n# 3. Create 'simple_sku'\n# 4. Return clean JSON matched to Intella Spec"
+        "language": "python",
+        "pythonCode": "# TODO: Implement the transformation logic here\n# \n# Your mission:\n# 1. Filter out products with stock <= 0\n# 2. Build full category path from dsc_category_name_l1 through l8\n# 3. Create Simple_SKU combining cod_sku and dsc_size\n# 4. Map to Intella schema with all required fields\n# 5. Add 'rag_content' field for semantic search\n#\n# Hints:\n# - Use safe_float() to handle numeric conversions\n# - Check dsc_custom_label_one for JumiaExpress status\n# - Combine product info into a natural language string for RAG\n\ninput_items = _input.all()\noutput_data = []\n\n# Your code here\n\nreturn output_data"
       },
-      "id": "code-1",
+      "id": "14fe8eab-c0c8-489f-ac88-184e29569eb9",
       "name": "Python Transform",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [900, 300]
+      "position": [
+        -752,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "5d056309-c437-4498-b572-7e1b4ede2dc4",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1808,
+        880
+      ],
+      "webhookId": "mini-intella-demo",
+      "notes": "Chatbot entry point"
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are Mini-Intella, a helpful fashion shopping assistant for Jumia. Use the provided product catalog to answer user questions about price, stock, and recommendations."
+        }
+      },
+      "id": "ed6b52ee-391d-4530-9e5c-eb08101eee50",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -1584,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "temperature": 0.5
+        }
+      },
+      "id": "de807411-44be-4429-873b-fb5d8c14221f",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        -1728,
+        1136
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "x2eOIRzbIMp8V2i0",
+          "name": "OpenAi account 6"
+        }
+      }
     },
     {
       "parameters": {},
-      "id": "upload-1",
-      "name": "SFTP Upload",
-      "type": "n8n-nodes-base.noOp",
+      "id": "44bd79c7-8679-4a3d-bae9-3ca24dd409a6",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.2,
+      "position": [
+        -1520,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $binary.data !== undefined }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "e4ae5da3-28e4-46f6-a94d-b0689ec3a22c",
+      "name": "S3 Success Check",
+      "type": "n8n-nodes-base.if",
       "typeVersion": 1,
-      "position": [1120, 300]
+      "position": [
+        -1440,
+        256
+      ],
+      "notes": "Fallback to Gist if S3 fails"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.2,
+      "position": [
+        -384,
+        352
+      ],
+      "id": "5362e1ab-9528-4540-bb56-ccf63c4aaf48",
+      "name": "Insert Data to Store"
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.rag_content }}",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "SKU",
+                "value": "={{ $json.SKU }}"
+              },
+              {
+                "name": "Title",
+                "value": "={{ $json.Title }}"
+              },
+              {
+                "name": "Brand",
+                "value": "={{ $json.Brand }}"
+              },
+              {
+                "name": "Model",
+                "value": "={{ $json.Model }}"
+              },
+              {
+                "name": "Category",
+                "value": "={{ $json.Category }}"
+              },
+              {
+                "name": "Colour",
+                "value": "={{ $json.Color }}"
+              },
+              {
+                "name": "Size",
+                "value": "={{ $json.Size }}"
+              },
+              {
+                "name": "Price",
+                "value": "={{ $json.SalePrice }}"
+              },
+              {
+                "name": "Original Price",
+                "value": "={{ $json.OriginalPrice }}"
+              },
+              {
+                "name": "Discount",
+                "value": "={{ $json.DiscountPercent }}"
+              },
+              {
+                "name": "Currency",
+                "value": "={{ $json.Currency }}"
+              },
+              {
+                "name": "Stock",
+                "value": "={{ $json.Stock }}"
+              },
+              {
+                "name": "Rating",
+                "value": "={{ $json.Rating }}"
+              },
+              {
+                "name": "Image",
+                "value": "={{ $json.ImageURL }}"
+              },
+              {
+                "name": "URL",
+                "value": "={{ $json.ProductURL }}"
+              },
+              {
+                "name": "Warranty",
+                "value": "={{ $json.Warranty }}"
+              },
+              {
+                "name": "RatingCount",
+                "value": "={{ $json.RatingCount }}"
+              },
+              {
+                "name": "JumiaExpress",
+                "value": "={{ $json.JumiaExpress }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        672
+      ],
+      "id": "d233445f-d714-4f85-b87e-4ffed919fb35",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -208,
+        1056
+      ],
+      "id": "a0e42070-0ba9-475d-85cd-ddbfd1c9dae2",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "x2eOIRzbIMp8V2i0",
+          "name": "OpenAi account 6"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "knowledge_base",
+        "toolDescription": "Use this knowledge base to look up Jumia Products to answer questions from the user ",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        },
+        "topK": 60
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.2,
+      "position": [
+        -1072,
+        1024
+      ],
+      "id": "6d155f85-2a4c-4924-bab5-91a033946d16",
+      "name": "Query Data Tool"
     }
   ],
+  "pinData": {},
   "connections": {
     "Start": {
-      "main": [[{"node": "Read CSV (S3 Simulation)", "type": "main", "index": 0}]]
+      "main": [
+        [
+          {
+            "node": "Download from S3 (Primary)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
-    "Read CSV (S3 Simulation)": {
-      "main": [[{"node": "Parse CSV", "type": "main", "index": 0}]]
+    "Download from S3 (Primary)": {
+      "main": [
+        [
+          {
+            "node": "S3 Success Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "S3 Success Check": {
+      "main": [
+        [
+          {
+            "node": "Parse CSV",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Download from Gist (Fallback)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download from Gist (Fallback)": {
+      "main": [
+        [
+          {
+            "node": "Parse CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Parse CSV": {
-      "main": [[{"node": "Python Transform", "type": "main", "index": 0}]]
+      "main": [
+        [
+          {
+            "node": "Python Transform",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Python Transform": {
+      "main": [
+        [
+          {
+            "node": "Insert Data to Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Insert Data to Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Insert Data to Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
     }
-  }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "bb7857ce-1077-4fc1-8b5e-1f1e9ea6cb0e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "968483afb1876e34ae96330e235ea7e691d9d2c2379c1202de80fcb0f81bf6b4"
+  },
+  "id": "bV8mO5V2uAZ0F504",
+  "tags": []
 }

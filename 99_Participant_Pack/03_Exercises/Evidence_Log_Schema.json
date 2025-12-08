@@ -1,0 +1,11 @@
+{
+  "audit_id": "SOX-AUTO-001",
+  "timestamp": "2025-12-10T10:00:00Z",
+  "check_performed": "Quality Gate - Negative Price",
+  "status": "FAILED",
+  "offending_data": {
+    "sku": "IPHONE-15",
+    "price": -100
+  },
+  "action_taken": "Blocked from Feed & Alert Sent"
+}
