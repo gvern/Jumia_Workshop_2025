@@ -1,9 +1,0 @@
-{
-  "name": "SOX Gate Starter",
-  "nodes": [
-    {"type":"Start","name":"Start"},
-    {"type":"Read File","name":"Load Dataset","notes":"Charger anomalies_dataset.csv"},
-    {"type":"Function","name":"Detect Anomalies","notes":"Detect price <= 0"}
-  ],
-  "notes":"Starter workflow: complete the alerting and remediation logic"
-}

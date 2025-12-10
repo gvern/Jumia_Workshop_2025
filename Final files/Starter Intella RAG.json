@@ -1,0 +1,390 @@
+{
+  "name": "Starter Intella RAG",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "6d5316a9-b284-4878-b337-65a34ac7a4ba",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "bucketName": "workshop-jumia-data",
+        "fileKey": "intella_sample.csv"
+      },
+      "id": "5ec5af07-436a-4696-9998-4e0a09c275ea",
+      "name": "Download from S3 (Primary)",
+      "type": "n8n-nodes-base.awsS3",
+      "typeVersion": 1,
+      "position": [
+        304,
+        64
+      ],
+      "credentials": {
+        "aws": {
+          "id": "VNm9fSYRCUbLI52r",
+          "name": "AWS account"
+        }
+      },
+      "onError": "continueRegularOutput",
+      "notes": "Primary data source from AWS S3"
+    },
+    {
+      "parameters": {
+        "url": "https://gist.githubusercontent.com/gvern/3195d242f6c226621b63a7c15bab480c/raw/137e90a79cd9befc7de00ad87cce4bc2f53011f9/gistfile1.txt",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "ad2dea64-9c63-46dd-8cc6-f527b8e4c52c",
+      "name": "Download from Gist (Fallback)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        960,
+        144
+      ],
+      "notes": "Backup data source - Activated if S3 fails"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "53933304-7e1d-4ef5-af03-a3abab2be3c6",
+      "name": "Parse CSV",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        1184,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "input_items = _input.all()\noutput_data = []\n\ndef safe_float(value):\n    try:\n        return float(value)\n    except:\n        return None\n\nfor item in input_items:\n    product = item.json\n    \n    # --- 1. QUALITY GATE ---\n    stock = safe_float(product.get('mtr_stock', 0)) or 0\n    if stock <= 0:\n        continue \n\n    # --- 2. TRANSFORMATION ---\n    cat_parts = []\n    for i in range(1, 9):\n        val = product.get(f'dsc_category_name_l{i}')\n        if val:\n            cat_parts.append(val)\n    full_category = \" > \".join(cat_parts)\n\n    is_express = \"Yes\" if str(product.get('dsc_custom_label_one')) == '1' else \"No\"\n    \n    base_sku = product.get('cod_sku', 'UNKNOWN')\n    size = product.get('dsc_size')\n    simple_sku = f\"{base_sku}-{size}\" if size else base_sku\n\n    # --- 3. ENRICHED MAPPING  ---\n    mapped_product = {\n        \"SKU\": base_sku,\n        \"Simple_SKU\": simple_sku,\n        \"Title\": product.get('dsc_name_en') or product.get('dsc_name_fr') or \"No Title\",\n        \"Brand\": product.get('dsc_brand_name'),\n        \"Model\": product.get('attr_model'),\n        \"Category\": full_category,\n        \"Color\": product.get('dsc_color_family'),\n        \"Size\": product.get('dsc_size'),\n        \"SalePrice\": product.get('mtr_price'),\n        \"OriginalPrice\": product.get('dsc_original_price'),\n        \"DiscountPercent\": product.get('mtr_price_discount'),\n        \"Currency\": \"EGP\",\n        \"Stock\": int(stock),\n        \"Rating\": product.get('mtr_rating'),\n        \"RatingCount\": product.get('mtr_rating_count'),\n        \"SellerScore\": product.get('mtr_seller_score'),\n        \"Warranty\": product.get('attr_warranty_duration'),\n        \"JumiaExpress\": is_express,\n        \"ImageURL\": product.get('dsc_url_image'),\n        \"ProductURL\": product.get('dsc_product_url')\n    }\n    \n    # --- 4. SEMANTIC FIELD FOR RAG (NEW COLUMN) ---\n\n    # We create a natural language sentence containing essential keywords for vector search\n    # Ex: \"Logitech C920 HD Webcam. Brand: Logitech. Category: Electronics > Webcams. Price: 79 EGP.\"\n    \n    semantic_string = f\"\"\"\n    Product: {mapped_product['Title']}\n    Brand: {mapped_product['Brand']}\n    Category: {mapped_product['Category']}\n    Price: {mapped_product['SalePrice']} {mapped_product['Currency']}\n    Color: {mapped_product['Color']}\n    Model: {mapped_product['Model']}\n    Rating: {mapped_product['Rating']}/5 stars\n    \"\"\".strip() # On retire les sauts de ligne inutiles\n    \n    # We add this new special field to the object\n    mapped_product['rag_content'] = semantic_string\n    \n    output_data.append({\"json\": mapped_product})\n\nreturn output_data"
+      },
+      "id": "6a78a393-fac5-4716-abba-9c001f1c8857",
+      "name": "Python Transform",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1424,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "9f9d1205-53e3-4769-8350-0995cc481693",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        368
+      ],
+      "webhookId": "mini-intella-demo",
+      "notes": "Chatbot entry point"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $binary.data !== undefined }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "02e18361-cec6-4fa2-a800-fb27eecf7e36",
+      "name": "S3 Success Check",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        736,
+        64
+      ],
+      "notes": "Fallback to Gist if S3 fails"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.2,
+      "position": [
+        1728,
+        400
+      ],
+      "id": "0a0c6653-cd5b-4ffa-be4c-66dc446b88f9",
+      "name": "Insert Data to Store"
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.rag_content }}",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "SKU",
+                "value": "={{ $json.SKU }}"
+              },
+              {
+                "name": "Title",
+                "value": "={{ $json.Title }}"
+              },
+              {
+                "name": "Brand",
+                "value": "={{ $json.Brand }}"
+              },
+              {
+                "name": "Model",
+                "value": "={{ $json.Model }}"
+              },
+              {
+                "name": "Category",
+                "value": "={{ $json.Category }}"
+              },
+              {
+                "name": "Colour",
+                "value": "={{ $json.Color }}"
+              },
+              {
+                "name": "Size",
+                "value": "={{ $json.Size }}"
+              },
+              {
+                "name": "Price",
+                "value": "={{ $json.SalePrice }}"
+              },
+              {
+                "name": "Original Price",
+                "value": "={{ $json.OriginalPrice }}"
+              },
+              {
+                "name": "Discount",
+                "value": "={{ $json.DiscountPercent }}"
+              },
+              {
+                "name": "Currency",
+                "value": "={{ $json.Currency }}"
+              },
+              {
+                "name": "Stock",
+                "value": "={{ $json.Stock }}"
+              },
+              {
+                "name": "Rating",
+                "value": "={{ $json.Rating }}"
+              },
+              {
+                "name": "Image",
+                "value": "={{ $json.ImageURL }}"
+              },
+              {
+                "name": "URL",
+                "value": "={{ $json.ProductURL }}"
+              },
+              {
+                "name": "Warranty",
+                "value": "={{ $json.Warranty }}"
+              },
+              {
+                "name": "RatingCount",
+                "value": "={{ $json.RatingCount }}"
+              },
+              {
+                "name": "JumiaExpress",
+                "value": "={{ $json.JumiaExpress }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        2032,
+        752
+      ],
+      "id": "f8ac42ae-3411-45f6-bc7f-5870d87c26de",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1312,
+        848
+      ],
+      "id": "6e916db9-1c8b-4d4f-8590-70225d7eef62",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "x2eOIRzbIMp8V2i0",
+          "name": "OpenAi account 6"
+        }
+      },
+      "notes": "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\n\n"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "knowledge_base",
+        "toolDescription": "Use this knowledge base to look up Jumia Products to answer questions from the user ",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        },
+        "topK": 60
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.2,
+      "position": [
+        864,
+        512
+      ],
+      "id": "c34b4d7d-41b5-4ede-9ea8-1da792cc4275",
+      "name": "Query Data Tool"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Download from S3 (Primary)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download from S3 (Primary)": {
+      "main": [
+        [
+          {
+            "node": "S3 Success Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download from Gist (Fallback)": {
+      "main": [
+        [
+          {
+            "node": "Parse CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse CSV": {
+      "main": [
+        [
+          {
+            "node": "Python Transform",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Python Transform": {
+      "main": [
+        []
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        []
+      ]
+    },
+    "S3 Success Check": {
+      "main": [
+        [
+          {
+            "node": "Parse CSV",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Download from Gist (Fallback)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Insert Data to Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Query Data Tool",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Insert Data to Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query Data Tool": {
+      "ai_tool": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ae67c446-4e4e-4198-aac1-7cfe35007ecf",
+  "meta": {
+    "instanceId": "968483afb1876e34ae96330e235ea7e691d9d2c2379c1202de80fcb0f81bf6b4"
+  },
+  "id": "4qyEtF0YFqQsj45T",
+  "tags": []
+}

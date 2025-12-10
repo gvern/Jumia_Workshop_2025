@@ -1,0 +1,192 @@
+{
+  "name": "Starter SQL Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "responseMode": "responseNodes"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -640,
+        224
+      ],
+      "id": "88894fd5-dc9d-4202-bc86-308f7cab4fef",
+      "name": "When chat message received",
+      "webhookId": "4c703d5a-ca7e-4016-bf46-be177041354f"
+    },
+    {
+      "parameters": {
+        "message": "=",
+        "waitUserReply": false,
+        "options": {
+          "memoryConnection": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chat",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        208
+      ],
+      "id": "c0e70901-d8f8-4928-be4f-04486e1abfab",
+      "name": "Respond to Chat1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -352,
+        208
+      ],
+      "id": "746a0c73-83f7-4de0-98e0-f3f3d4a7ba32",
+      "name": "SQL Agent"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        416,
+        208
+      ],
+      "id": "6186b48c-ae32-4832-ad33-adcd69a6041e",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "import sqlite3\n\n# 1. Récupération des inputs\nitems = _input.all()\n\nsql_query = \"\"\nproducts_data = []\n\nfor item in items:\n    json_data = item.json\n\n    # Détection de la requête SQL générée par l'IA\n    if 'output' in json_data and 'SELECT' in str(json_data['output']).upper():\n        sql_query = json_data['output']\n        sql_query = sql_query.replace('```sql', '').replace('```', '').strip()\n\n    # Détection des produits Jumia\n    if 'cod_sku' in json_data:\n        products_data.append(json_data)\n\nif not sql_query or not products_data:\n    return {'error': 'Missing SQL Query or Product Data'}\n\n# 2. Création de la DB en mémoire\nconn = sqlite3.connect(':memory:')\ncursor = conn.cursor()\n\ncreate_table_sql = \"\"\"\nCREATE TABLE products (\n    sku TEXT,\n    title TEXT,\n    brand TEXT,\n    price REAL,\n    original_price REAL,\n    discount_percent INTEGER,\n    stock INTEGER,\n    rating REAL,\n    rating_count INTEGER,\n    category_l1 TEXT,\n    category_l2 TEXT,\n    category_l3 TEXT,\n    size TEXT,\n    color TEXT,\n    express TEXT,\n    seller_score REAL,\n    model TEXT,\n    warranty TEXT,\n    image_url TEXT,\n    product_url TEXT\n);\n\"\"\"\ncursor.execute(create_table_sql)\n\n# 3. Insertion des données\nrows_to_insert = []\nfor p in products_data:\n    rows_to_insert.append((\n        p.get('cod_sku'),\n        p.get('dsc_name_en'),\n        p.get('dsc_brand_name'),\n        float(p.get('mtr_price', 0)),\n        float(p.get('dsc_original_price', 0)),\n        int(p.get('mtr_price_discount', 0)),\n        int(p.get('mtr_stock', 0)),\n        float(p.get('mtr_rating', 0)),\n        int(p.get('mtr_rating_count', 0)),\n        p.get('dsc_category_name_l1'),\n        p.get('dsc_category_name_l2'),\n        p.get('dsc_category_name_l3'),\n        p.get('dsc_size'),\n        p.get('dsc_color_family'),\n        str(p.get('dsc_custom_label_one')),\n        float(p.get('mtr_seller_score', 0)),\n        p.get('attr_model'),\n        p.get('attr_warranty_duration'),\n        p.get('dsc_url_image'),\n        p.get('dsc_product_url')\n    ))\n\ncursor.executemany(\n    \"INSERT INTO products VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\",\n    rows_to_insert\n)\nconn.commit()\n\n# 4. Exécution de la requête IA\ntry:\n    cursor.execute(sql_query)\n    columns = [description[0] for description in cursor.description]\n    results = cursor.fetchall()\n\n    output_json = []\n    for row in results:\n        output_json.append(dict(zip(columns, row)))\n    if not output_json:\n        return [{\n            \"message\": \"Query executed successfully but returned 0 results.\",\n            \"query_executed\": sql_query,\n            \"data_sample\": \"Available categories: \" + products_data[0].get('dsc_category_name_l1', 'N/A')\n        }]\n    return output_json\n\nexcept Exception as e:\n    return {'error': str(e), 'query': sql_query}\n\nfinally:\n    conn.close()\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        752,
+        208
+      ],
+      "id": "9dc88b38-0e0a-47f7-b8d8-5147acb265be",
+      "name": "Execute SQL on CSV",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "url": "https://gist.githubusercontent.com/gvern/3195d242f6c226621b63a7c15bab480c/raw/137e90a79cd9befc7de00ad87cce4bc2f53011f9/gistfile1.txt",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "5bab8a2f-c852-4e0f-ac46-d1c4a21082ca",
+      "name": "Download CSV from Gist1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -960,
+        672
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        752
+      ],
+      "id": "80916b1f-5ccb-4ab2-914f-f17b29afe32a",
+      "name": "Extract from File"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "SQL Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SQL Agent": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Execute SQL on CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute SQL on CSV": {
+      "main": [
+        [
+          {
+            "node": "Respond to Chat1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download CSV from Gist1": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ef22cc93-a597-46df-aaad-d84209646d1e",
+  "meta": {
+    "instanceId": "968483afb1876e34ae96330e235ea7e691d9d2c2379c1202de80fcb0f81bf6b4"
+  },
+  "id": "lcLoE2S0XuXYjdXB",
+  "tags": []
+}

@@ -1,8 +1,0 @@
-order_id,sku,price,quantity,order_date
-SOX-1001,SKU-AAA,25.00,1,2025-11-01T10:00:00Z
-SOX-1002,SKU-XYZ,-5.00,2,2025-11-02T11:00:00Z
-SOX-1003,SKU-DEF,0.00,1,2025-11-03T12:00:00Z
-SOX-1004,SKU-GHI,199.99,1,2025-11-04T13:00:00Z
-SOX-1005,SKU-JKL,-1.50,5,2025-11-05T14:00:00Z
-
--- Dataset containing anomalies (negative/zero prices) for testing the Quality Gate
